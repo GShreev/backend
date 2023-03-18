@@ -15,9 +15,12 @@ app.use(bodyParser.json());
 // for tme beign allowed all origin for development. this needs to be changed to specific.
 app.use(cors({origin: '*'}));
 
-// Define the user routes
+// Define the routes
 const userRoutes = require('./routes/userRoutes.js');
+const referralRoutes = require('./routes/referralRoutes.js');
+
 app.use('/users', userRoutes);
+app.use('/referrals', referralRoutes);
 
 
 
