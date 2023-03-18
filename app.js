@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const cors = require('cors');
 const dotenv = require('dotenv').config();
 
 // Create a new instance of the express server
@@ -11,15 +12,19 @@ const app = express();
 // Configure the bodyParser middleware to handle JSON data
 app.use(bodyParser.json());
 
+// for tme beign allowed all origin for development. this needs to be changed to specific.
+app.use(cors({origin: '*'}));
 
 // Define the user routes
 const userRoutes = require('./routes/userRoutes.js');
 app.use('/users', userRoutes);
 
 
+
+
 mongoose.connect(process.env.MONGO_URL).then(result => {
   app.listen(3001, function () {
-   console.log('The SERVER HAS STARTED ON PORT: 3000');
+   console.log('The SERVER HAS STARTED ON PORT: 3001');
  })
    //Fix the Error EADDRINUSE
    .on("error", function (err) {
